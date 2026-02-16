@@ -25,5 +25,5 @@ jobs:
         run: npm install -g surge
 
       # 4️⃣ Deploy automático usando el secret
-      - name: Deploy to Surge
-        run: surge ./ TU_DOMINIO.surge.sh --token ${{ 2ed5e3e47beaf036abf7cd013d077429 }}
+     - name: Deploy to Surge
+  run: surge ./ pagina-devops-itla.surge.sh --token ${{ secrets.SURGE_TOKEN }}
