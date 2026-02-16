@@ -1,9 +1,6 @@
 name: Deploy to Surge
 
 on:
- name: Deploy to Surge
-
-on:
   push:
     branches:
       - main
@@ -17,7 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Instalar Node.js
+      # 2️⃣ Configurar Node.js
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -27,6 +24,6 @@ jobs:
       - name: Install Surge
         run: npm install -g surge
 
-      # 4️⃣ Deploy automático usando el secret
+      # 4️⃣ Deploy automático usando los secrets
       - name: Deploy to Surge
-       run: surge ./public --domain ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+        run: surge ./public --domain ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
