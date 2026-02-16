@@ -1,0 +1,32 @@
+name: Deploy to Surge
+
+on:
+ name: Deploy to Surge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Descargar el repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Instalar Node.js
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # 3️⃣ Instalar Surge
+      - name: Install Surge
+        run: npm install -g surge
+
+      # 4️⃣ Deploy automático usando el secret
+      - name: Deploy to Surge
+       run: surge ./public --domain ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
